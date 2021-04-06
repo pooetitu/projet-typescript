@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/pooetitu/projet-typescript/issues"
   },
-  "homepage": "https://github.com/pooetitu/projet-typescript#readme"
+  "homepage": "https://github.com/pooetitu/projet-typescript#readme",
+  "dependencies": {
+    "typescript": "^4.2.3"
+  }
 }
