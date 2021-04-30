@@ -13,8 +13,10 @@ export class Attack {
         this.ppMax = ppMax;
     }
 
-    attack(pokemon: Pokemon) {
-        pokemon.health -= this.damage * Math.random() * (2 + 1);
-        console.log(Math.random() * (2 + 1))
+    public attack(attacker: Pokemon, defending: Pokemon) {
+        if(this.pp >0) {
+            defending.receiveDamage(Math.floor(Math.floor(Math.floor(2 * attacker.level / 5 + 2) * attacker.attack * this.damage / defending.defense) / 50) + 2);
+            this.pp--;
+        }
     }
 }
