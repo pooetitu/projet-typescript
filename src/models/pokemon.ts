@@ -4,9 +4,9 @@ export class Pokemon {
     name: string;
     speed: number;
     health: number;
-    level:number;
-    attack:number;
-    defense:number;
+    level: number;
+    attack: number;
+    defense: number;
     attacks: Attack[];
 
     constructor(name: string, speed: number, health: number, level: number, attack: number, defense: number, attacks: Attack[]) {
@@ -19,30 +19,28 @@ export class Pokemon {
         this.attacks = attacks;
     }
 
-    public receiveDamage(damage: number){
+    public receiveDamage(damage: number) {
         this.health -= damage;
     }
 
-    public isDead(): boolean{
+    public isDead(): boolean {
         return this.health <= 0;
     }
 }
 
 export function firstPokemonToFight(first: Pokemon, second: Pokemon): Pokemon {
     if (first.speed === second.speed) {
-        return (Math.round(Math.random()) === 0 ? first:second);
-    }
-    else if(first.speed > second.speed){
+        return (Math.round(Math.random()) === 0 ? first : second);
+    } else if (first.speed > second.speed) {
         return first;
     }
     return second;
 }
 
-export function selectRandomAttack(pokemon: Pokemon): Attack | null {
+export function selectRandomAttack(pokemon: Pokemon): Attack {
     const availableAttacks = pokemon.attacks.filter(p => p.pp > 0);
-    if(availableAttacks.length <= 0) {
-        console.log(`${pokemon.name} can't attack because he has no pp left`)
-        return null;
+    if (availableAttacks.length <= 0) {
+        return new Attack("lutte", 50, Infinity);
     }
     const index = Math.floor(Math.random() * availableAttacks.length);
     return availableAttacks[index];

@@ -1,26 +1,13 @@
-import {firstPokemonToFight, Pokemon, selectRandomAttack} from "./models/pokemon";
+import {Pokemon} from "./models/pokemon";
 import {Attack} from "./models/attack";
+import {Battle} from "./models/battle";
 
-async function battle() {
-    const pokemons = [
-        new Pokemon("salameche", 50,25,1,10,5,[
-            new Attack("flammeche",10,10),
-            new Attack("roue de feu",10,10)]),
-        new Pokemon("salameche", 50,25,1,10,5,[
-            new Attack("flammeche",10,10),
-            new Attack("roue de feu",10,10)])]
-    let turn = pokemons.indexOf(firstPokemonToFight(pokemons[0],pokemons[1]));
+const battle = new Battle(new Pokemon("salameche", 50, 25, 1, 10, 5, [
+        new Attack("flammeche", 40, 25),
+        new Attack("roue de feu", 35, 15)]),
+    new Pokemon("salameche", 50, 25, 1, 10, 5, [
+        new Attack("flammeche", 40, 25),
+        new Attack("roue de feu", 35, 15)]));
 
-    const interval = setInterval(async () => {
-        const attack = selectRandomAttack(pokemons[turn % 2]);
-        if(attack !== null){
-            attack.attack(pokemons[turn % 2], pokemons[(turn+1) % 2]);
-        }
-        if(pokemons[turn%2].isDead() || pokemons[(turn+1)%2].isDead()) {
-            clearInterval(interval);
-        }
-        turn++;
-    },1000);
-}
+battle.startBattle().then((p) => console.log(`Battle ended with: ${p.name} won`));
 
-battle().then(() => console.log("Battle starting"));

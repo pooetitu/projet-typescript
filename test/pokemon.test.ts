@@ -7,7 +7,7 @@ let carapuce = new Pokemon("carapuce", 45,0,1,10,10,[]);
 
 let magicarpe = new Pokemon("carapuce", 45,0,1,10,10,[new Attack("trempette",0,0)]);
 
-describe('PokemonAttack', () => {
+describe('Pokemon', () => {
     it('should show the name of the pokemon salameche', () => {
         expect(salameche.name).toBe("salameche");
     });
@@ -49,7 +49,7 @@ describe('PokemonAttack', () => {
         });
         it('should return no attack since the all the attacks has no pp left',()=>{
             jest.spyOn(global.Math, 'random').mockReturnValue(0)
-            expect(selectRandomAttack(magicarpe)).toEqual(null);
+            expect(selectRandomAttack(magicarpe).name).toBe("lutte");
         });
         afterEach(() => {
             jest.spyOn(global.Math, 'random').mockRestore();
