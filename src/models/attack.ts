@@ -13,7 +13,7 @@ export class Attack {
         this.ppMax = ppMax;
     }
 
-    public async attack(attacker: Pokemon, defending: Pokemon) {
+    public attack(attacker: Pokemon, defending: Pokemon) {
         if(this.pp >0) {
             const damage = Math.floor(Math.floor(Math.floor(2 * attacker.level / 5 + 2) * attacker.attack * this.damage / defending.defense) / 50) + 2
             defending.receiveDamage(damage);

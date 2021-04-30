@@ -28,7 +28,7 @@ export class Pokemon {
     }
 }
 
-export async function firstPokemonToFight(first: Pokemon, second: Pokemon): Promise<Pokemon> {
+export function firstPokemonToFight(first: Pokemon, second: Pokemon): Pokemon {
     if (first.speed === second.speed) {
         return (Math.round(Math.random()) === 0 ? first:second);
     }
@@ -38,7 +38,7 @@ export async function firstPokemonToFight(first: Pokemon, second: Pokemon): Prom
     return second;
 }
 
-export async function selectRandomAttack(pokemon: Pokemon): Promise<Attack | null> {
+export function selectRandomAttack(pokemon: Pokemon): Attack | null {
     const availableAttacks = pokemon.attacks.filter(p => p.pp > 0);
     if(availableAttacks.length <= 0) {
         console.log(`${pokemon.name} can't attack because he has no pp left`)
