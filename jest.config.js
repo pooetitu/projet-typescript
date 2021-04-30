@@ -4,7 +4,7 @@
  * https://jestjs.io/docs/en/configuration.html
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
+module.exports = {
   verbose: true,
   collectCoverage: true,
   collectCoverageFrom: ["src/**/*.ts"],
