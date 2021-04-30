@@ -15,7 +15,7 @@ export class Attack {
 
     public attack(attacker: Pokemon, defending: Pokemon) {
         let damage = Math.floor(Math.floor(Math.floor(2 * attacker.level / 5 + 2) * attacker.attack * this.damage / defending.defense) / 50) + 2;
-        if(this.isCritical()){
+        if (this.isCritical()) {
             console.log("Critical hit !");
             damage *= 1.5;
         }
