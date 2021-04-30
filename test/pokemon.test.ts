@@ -5,7 +5,7 @@ let salameche = new Pokemon("salameche", 50,60,1,10,10,[new Attack("flammeche",1
 let herbizarre = new Pokemon("herbizarre", 50,40,1,10,10,[]);
 let carapuce = new Pokemon("carapuce", 45,0,1,10,10,[]);
 
-let magicarpe = new Pokemon("carapuce", 45,0,1,10,10,[new Attack("trempette",0,0)]);
+let magicarpe = new Pokemon("magicarpe", 60,0,1,10,10,[new Attack("trempette",0,0)]);
 
 describe('Pokemon', () => {
     it('should show the name of the pokemon salameche', () => {
@@ -14,6 +14,9 @@ describe('Pokemon', () => {
 
     it('should return salameche wich has the highest speed', () => {
         expect(firstPokemonToFight(salameche, carapuce)).toEqual(salameche);
+    });
+    it('should return magicarpe wich has the highest speed', () => {
+        expect(firstPokemonToFight(salameche, magicarpe)).toEqual(magicarpe);
     });
     describe("should return a random pokemon when their speed is equal",() =>{
         it('should return first pokemon when random return 0', () => {
