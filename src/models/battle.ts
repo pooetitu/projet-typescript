@@ -1,8 +1,8 @@
 import {firstPokemonToFight, Pokemon, selectRandomAttack} from "./pokemon";
 
 export class Battle {
-    private turn: number;
-    private pokemons: Pokemon[];
+    turn: number;
+    pokemons: Pokemon[];
 
     constructor(first: Pokemon, second: Pokemon) {
         this.pokemons = [];
@@ -10,29 +10,35 @@ export class Battle {
         this.turn = this.selectFirstToAttack();
     }
 
-    public async startBattle(): Promise<Pokemon> {
+    public async startBattle(waitTime: number): Promise<Pokemon> {
         return await new Promise(resolve => {
             const inter = setInterval(() => {
-                this.attack();
                 if (this.pokemons[0].isDead() || this.pokemons[1].isDead()) {
                     resolve(this.getWinner());
                     clearInterval(inter);
+                } else {
+                    this.battleTurn();
                 }
-            }, 1000);
+            }, waitTime);
         });
     }
 
-    private selectFirstToAttack(): number {
+    public battleTurn() {
+        this.attack(this.pokemons[this.turn % 2], this.pokemons[(this.turn + 1) % 2]);
+        this.turn++;
+    }
+
+    public selectFirstToAttack(): number {
         const pokemon = firstPokemonToFight(this.pokemons[0], this.pokemons[1])
         return this.pokemons.indexOf(pokemon);
     }
 
-    private attack() {
-        const attack = selectRandomAttack(this.pokemons[this.turn % 2]);
-        attack.attack(this.pokemons[this.turn % 2], this.pokemons[(this.turn + 1) % 2]);
+    public attack(attacker: Pokemon, defending: Pokemon) {
+        const attack = selectRandomAttack(attacker);
+        attack.attack(attacker, defending);
     }
 
-    private getWinner(): Pokemon {
+    public getWinner(): Pokemon {
         return this.pokemons[0].isDead() ? this.pokemons[1] : this.pokemons[0];
     }
 }

@@ -11,10 +11,10 @@ describe('Pokemon', () => {
     it('should show the name of the pokemon salameche', () => {
         expect(salameche.name).toBe("salameche");
     });
-    it('should return salameche wich has the highest speed', () => {
+    it('should return salameche which has the highest speed', () => {
         expect(firstPokemonToFight(salameche, carapuce)).toEqual(salameche);
     });
-    it('should return magicarpe wich has the highest speed', () => {
+    it('should return magicarpe which has the highest speed', () => {
         expect(firstPokemonToFight(salameche, magicarpe)).toEqual(magicarpe);
     });
     describe("should return a random pokemon when their speed is equal", () => {
